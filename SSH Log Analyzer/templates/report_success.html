@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Report Submitted - FLASHFIX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>FLASHFIX</h1>
+        <p>Your comprehensive Incident Response Tool</p>
+    </header>
+
+    <main>
+        <h2>Thank You for Your Report!</h2>
+        <p>Your incident report has been submitted successfully.</p>
+        <p><strong>Incident Type:</strong> {{ incident_type }}</p>
+        <p><a href="/">Return to Home</a></p>
+    </main>
+
+    <footer>
+        <p>Powered by Flask & CSS | Incident Response Plan Tool</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Response Plan - FLASHFIX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>FLASHFIX</h1>
+        <p>Your Comprehensive Incident Response Tool</p>
+    </header>
+
+    <main>
+        <section class="incident-report">
+            <h3>Report an Incident</h3>
+            <form action="/submit_report" method="POST">
+                <label for="incident_type">Incident Type:</label>
+                <select id="incident_type" name="incident_type" required>
+                    <option value="phishing">Phishing</option>
+                    <option value="malware">Malware</option>
+                    <option value="ddos">DDoS Attack</option>
+                    <option value="data_breach">Data Breach</option>
+                </select>
+
+                <label for="severity">Severity:</label>
+                <select id="severity" name="severity" required>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+
+                <label for="description">Incident Description:</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+
+                <button type="submit">Submit Report</button>
+            </form>
+        </section>
+
+        <section class="response-section">
+            <h3>Incident Response Plan</h3>
+            <p>Start managing your cybersecurity incidents with ease using FLASHFIX.</p>
+
+            <div class="plan-steps">
+                <button class="toggle-info" data-target="identification-info">1. Incident Identification</button>
+                <div id="identification-info" class="additional-info" style="display:none;">
+                    <p>Identify potential incidents through monitoring systems, reports, and alerts. This ensures that early signs of security issues are quickly noticed, preventing further damage.</p>
+                </div>
+            </div>
+
+            <div class="plan-steps">
+                <button class="toggle-info" data-target="containment-info">2. Incident Containment</button>
+                <div id="containment-info" class="additional-info" style="display:none;">
+                    <p>Contain the incident to prevent further damage or exposure. Quick containment can help mitigate the impact on critical systems and data.</p>
+                </div>
+            </div>
+
+            <div class="plan-steps">
+                <button class="toggle-info" data-target="eradication-info">3. Incident Eradication</button>
+                <div id="eradication-info" class="additional-info" style="display:none;">
+                    <p>Eliminate the root cause of the incident to prevent future occurrences. Identifying and removing the source of the incident is essential for long-term security.</p>
+                </div>
+            </div>
+
+            <div class="plan-steps">
+                <button class="toggle-info" data-target="recovery-info">4. Recovery</button>
+                <div id="recovery-info" class="additional-info" style="display:none;">
+                    <p>Restore systems and operations to normal while minimizing downtime. Effective recovery ensures business continuity and reduces operational disruptions.</p>
+                </div>
+            </div>
+
+            <div class="plan-steps">
+                <button class="toggle-info" data-target="lessons-info">5. Lessons Learned</button>
+                <div id="lessons-info" class="additional-info" style="display:none;">
+                    <p>Document the incident and evaluate the response for future improvements. Learning from incidents ensures better preparedness and improves future responses.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reports">
+            <h3>Submitted Incident Reports</h3>
+            {% if reports %}
+                <ul>
+                    {% for report in reports %}
+                        <li>
+                            <strong>Type:</strong> {{ report.incident_type }} <br>
+                            <strong>Severity:</strong> {{ report.severity }} <br>
+                            <strong>Description:</strong> {{ report.description }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No reports submitted yet.</p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>Powered by Flask & CSS | Incident Response Plan Tool</p>
+    </footer>
+
+    <script>
+        // jQuery to toggle the visibility of the additional information
+        $(document).ready(function(){
+            $('.toggle-info').click(function(){
+                var targetId = $(this).data('target');
+                $('#' + targetId).toggle();  // Toggle the visibility of the corresponding info
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Reports - FLASHFIX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>FLASHFIX</h1>
+        <p>View Submitted Incident Reports</p>
+    </header>
+
+    <main>
+        <h2>Submitted Incident Reports</h2>
+
+        {% if reports %}
+            <ul>
+                {% for report in reports %}
+                    <li>
+                        <strong>Incident Type:</strong> {{ report.incident_type }}<br>
+                        <strong>Severity:</strong> {{ report.severity }}<br>
+                        <strong>Description:</strong> {{ report.description }}
+                    </li>
+                    <hr>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No reports have been submitted yet.</p>
+        {% endif %}
+
+        <p><a href="/">Back to Incident Response Plan</a></p>
+    </main>
+
+    <footer>
+        <p>Powered by Flask & CSS | Incident Response Plan Tool</p>
+    </footer>
+</body>
+</html>
